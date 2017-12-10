@@ -1,0 +1,30 @@
+import numpy as np
+
+
+class Commodity(object):
+    def __init__(self, price_vector):
+        self.__price_vec = price_vector
+
+    def get_price(self):
+        return self.__price
+
+    def set_price(self, price_vector):
+        self.__price_vec = price_vector
+
+
+
+class CommodityWorkingClass(object):
+    def __init__(self, price_vec_1, price_vec_2):
+        self.__spread = price_vec_1.get_price() - price_vec_2.get_price()
+        self.__ln_spread = np.log(self.__spread)
+        #self.__sqrt_spread = np.sqrt(self.__spread)
+        self.__ln_MA_fast_vec = set_MA_fast()
+        self.__ln_MA_slow_vec = set_MA_slow()
+
+
+    def set_MA_fast(self, window = 5):
+        # TODO
+
+    def set_MA_slow(self, window = 30):
+        # TODO
+
