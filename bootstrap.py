@@ -21,7 +21,6 @@ def stationary_bootstrap(data_vec_to_resapmle, q = 0.1, replications = 1000):
 
     vec_len = len(data_vec_to_resapmle)
     end_of_vec_index_adj = vec_len - 1
-    vec_type = type(data_vec_to_resapmle[0])
     resample_vec = np.zeros(shape=(replications, vec_len), dtype=float)
  
     for i in range(replications):
