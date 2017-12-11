@@ -19,14 +19,12 @@ def stationary_bootstrap(data_vec_to_resapmle, q = 0.1, replications = 1000):
         1,000 (or however many designated) numpy array's resampled from data_vec_to_resapmle
     """
 
-
     vec_len = len(data_vec_to_resapmle)
     end_of_vec_index_adj = vec_len - 1
     vec_type = type(data_vec_to_resapmle[0])
     resample_vec = np.zeros(shape=(replications, vec_len), dtype=float)
  
     for i in range(replications):
-        stationary_bootstrap_vec = np.zeros(vec_len, vec_type)
         index_vec = np.zeros(vec_len, dtype=int)
         starting_pos = np.random.randint(0, vec_len, dtype=int)
         index_vec[0] = starting_pos
@@ -34,7 +32,7 @@ def stationary_bootstrap(data_vec_to_resapmle, q = 0.1, replications = 1000):
         std_unifs = np.random.normal(0.0, 1.0, vec_len)
 
         for j in range(1, vec_len):
-            if (std_unifs[j] < q):
+            if std_unifs[j] < q:
                 index_vec[j] = np.random.randint(0, vec_len, dtype=int)
             else:
                 if index_vec[j - 1] == end_of_vec_index_adj:
@@ -42,8 +40,8 @@ def stationary_bootstrap(data_vec_to_resapmle, q = 0.1, replications = 1000):
                 else:
                     index_vec[j] = index_vec[j - 1] + 1
 
-        stationary_bootstrap_vec[data_vec_to_resapmle[index_vec]]
-        resample_vec[i] = stationary_bootstrap_vec
+        resample_vec[i] = data_vec_to_resapmle[index_vec]
+        index_vec = np.zeros(vec_len, dtype=int)
 
     return resample_vec
 
